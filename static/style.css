@@ -95,7 +95,7 @@ main > .section-title:first-child { margin-top: 0; }
   width: fit-content;
   margin: 0;
   padding: 0.15em 0.4em;
-  border: 1px solid currentColor;
+  border: 2px solid currentColor;
   color: var(--title-blue);
   font: 400 42px/1.2 var(--serif);
   text-decoration: none;
