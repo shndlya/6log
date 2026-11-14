@@ -1,0 +1,40 @@
+<footer class="footer">
+  <a href="/all.html" hx-get="/all.html" hx-push-url="true" hx-target="#main" hx-select="#main" hx-swap="outerHTML">Index</a>
+  <span><a href="https://instagram.com/shndlya" target="_blank" rel="noopener">shndlya</a>'s 6log</span>
+</footer>
+<script>
+(function () {
+  function crumb(content) {
+    var b = document.getElementById('breadcrumb');
+    if (!b) return;
+    if (content === 'home') {
+      b.textContent = 'home';
+      return;
+    }
+    var slash = content.indexOf('/');
+    var rest = slash === -1 ? '' : content.slice(slash);
+    b.innerHTML = '';
+    var link = document.createElement('a');
+    link.href = '/';
+    link.textContent = 'home';
+    link.setAttribute('hx-get', '/');
+    link.setAttribute('hx-push-url', 'true');
+    link.setAttribute('hx-target', '#main');
+    link.setAttribute('hx-select', '#main');
+    link.setAttribute('hx-swap', 'outerHTML');
+    b.appendChild(link);
+    b.appendChild(document.createTextNode(rest));
+    if (window.htmx) htmx.process(b);
+  }
+  function sync() {
+    var m = document.getElementById('main');
+    if (!m) return;
+    if (m.dataset.title) document.title = m.dataset.title;
+    if (m.dataset.breadcrumb) crumb(m.dataset.breadcrumb);
+  }
+  document.addEventListener('htmx:afterSwap', sync);
+  document.addEventListener('htmx:historyRestore', sync);
+})();
+</script>
+</body>
+</html>

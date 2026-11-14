@@ -1,0 +1,22 @@
+# Generated site output
+site/
+
+# Nix and local development state
+result
+result-*
+.direnv/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+*.swp
+*~
+.DS_Store
+
+# Personal working notes
+POSTING.md
+
+AGENTS.md

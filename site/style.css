@@ -1,0 +1,346 @@
+/* 6log — newspaper / industrial theme
+   dense, tight margins, black on textured newsprint, one navy accent */
+
+:root {
+  --paper: #f8f6f1;
+  --ink: #111111;
+  --ink-soft: #333333;       /* >= 75% ink over paper */
+  --ink-faint: #4b4a49;      /* exactly 75% ink over paper */
+  --ink-ninety: #282827;     /* exactly 90% ink over paper */
+  --sheet-shadow: 3px 3px 0 rgba(17, 17, 17, 0.12); /* hard, low-opacity, small throw */
+  --hover: #3d9ed1;           /* darker light blue for interactive hover states */
+  --row-hover: #b9e3f7;       /* darker light-blue mouseover bg: post-row cells */
+  --rule: #c9c4ba;
+  --rule-strong: #111111;
+  --accent: #123a66;
+  --title-blue: lab(36.3314% 31.1715 -81.0014);
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --page-pad: 1.1rem;
+  --sec-gap: 0.9rem;         /* box-to-box gap between tables ~45px (+20%) */
+  /* category bullet colors */
+  --d-pinned: #e2629e;
+  --d-new: #4caf67;
+  --d-computers: #3e5f9e;
+  --d-learning: #b7410e;
+  --d-entertainment: #52c08e;
+  --d-notes: #d9a521;
+  --d-photos: #a66dd4;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0 auto;
+  max-width: 80vw;           /* site uses 80% of the available width */
+  padding: 0 var(--page-pad) 1.5rem;
+  background-color: var(--paper);
+  /* Fine overlapping fibers give the page a restrained paper grain. */
+  background-image:
+    radial-gradient(rgba(18, 58, 102, 0.035) 0.55px, transparent 0.7px),
+    radial-gradient(rgba(17, 17, 17, 0.025) 0.5px, transparent 0.65px);
+  background-position: 0 0, 3px 2px;
+  background-size: 7px 7px, 11px 11px;
+  color: var(--ink);
+  font: 15px/1.55 var(--serif);
+}
+
+a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+a:hover { color: var(--hover); }
+
+/* --- section headings ------------------------------------------------ */
+/* serif, normal case, full opacity, no divider; titles sit OUTSIDE
+   their boxes and link to the full-page table */
+
+.section-title {
+  display: flex;
+  align-items: center;
+  margin: var(--sec-gap) 0 0.5rem;
+  font: 400 21px/1.2 var(--serif);
+  color: var(--ink);
+}
+
+.section-title a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+/* only the very first title on a page loses its top gap; titles inside
+   <section> wrappers keep var(--sec-gap) so stacked tables space
+   identically to the intro-to-Pinned row */
+main > .section-title:first-child { margin-top: 0; }
+
+.section-title a {
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.section-title a:hover { color: var(--hover); text-decoration: underline; }
+
+.site-header,
+.home {
+  padding-top: 45px;
+}
+
+.site-header {
+  margin-bottom: 1.1rem;
+}
+
+.site-mark {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin: 0;
+  padding: 0.15em 0.4em;
+  border: 1px solid currentColor;
+  color: var(--title-blue);
+  font: 400 42px/1.2 var(--serif);
+  text-decoration: none;
+}
+
+.site-mark:hover { color: var(--hover); }
+
+.home > .site-mark { margin-bottom: 0.8rem; }
+
+/* --- category squares (before each section title) ------------------------ */
+/* solid square glyph, color-coded per category; only the New
+   square breathes */
+
+.section-title .bullet {
+  font-size: 1.025em;
+  line-height: 1;
+  display: inline-block;
+  margin-right: 0.4em;
+  transform: translateY(-0.02em);
+}
+
+.d-pinned { color: var(--d-pinned); }
+.d-new { color: var(--d-new); }
+.d-computers { color: var(--d-computers); }
+.d-learning { color: var(--d-learning); }
+.d-entertainment { color: var(--d-entertainment); }
+.d-notes { color: var(--d-notes); }
+.d-photos { color: var(--d-photos); }
+
+@keyframes bullet-breathe {
+  from { opacity: 1; }
+  to { opacity: 0.55; }
+}
+
+.section-title .d-new {
+  animation: bullet-breathe 2.6s ease-in-out infinite alternate;
+}
+
+/* --- simple dash divider (below intro) ---------------------------------- */
+
+.section-rule {
+  border: none;
+  border-top: 1px dashed rgba(17, 17, 17, 0.5);
+  margin: 1.4rem 0 var(--sec-gap);
+}
+
+/* --- side-by-side row (Pinned / New) --------------------------------- */
+
+.tables-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: var(--sec-gap) 1.5rem;   /* vertical gap identical to table spacing */
+  align-items: start;
+  margin-top: 0;   /* spacing comes from the .section-rule above */
+}
+
+.tables-row .section-title { margin-top: 0; }
+
+/* --- about block ------------------------------------------------------ */
+
+.about-grid {
+  display: block;
+}
+
+.about-col {
+  min-width: 0;
+}
+
+.about-note {
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  font: 18px/1.5 var(--serif);
+  color: var(--ink-soft);
+}
+
+.contact-grid {
+  display: flex;
+  gap: 3px;
+  width: fit-content;
+  margin-top: 0.8rem;
+}
+
+.contact-grid a {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--rule-strong);
+  color: var(--ink);
+}
+
+.contact-grid a:hover {
+  color: var(--ink);
+  background: var(--paper);
+  text-decoration: none;
+}
+
+/* Keep contact buttons quiet so the 6log mark remains the primary blue accent. */
+.contact-grid a.contact-instagram,
+.contact-grid a.contact-email {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.contact-grid a.contact-instagram:hover,
+.contact-grid a.contact-email:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.contact-grid svg { width: 19px; height: 19px; }
+
+/* --- post tables -------------------------------------------------------- */
+/* bordered box; columns: date (center), title (left), tag (right, last) */
+
+table.posts {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  border: 1px solid var(--rule-strong);
+  box-shadow: var(--sheet-shadow);
+  font: 14px/1.35 var(--sans);
+}
+
+table.posts td {
+  padding: 0.3rem 0.4rem;
+  border-bottom: 1px dashed var(--rule);
+  vertical-align: middle;
+}
+
+table.posts tr:last-child td { border-bottom: none; }
+table.posts tr:hover td { background: var(--row-hover); }
+
+.t-date {
+  width: 7em;
+  text-align: center;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+.t-title { text-align: left; }
+
+.t-title a {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.t-tag {
+  width: 6em;
+  text-align: right;
+}
+
+.t-title a { text-decoration: none; }
+.t-title a:hover { text-decoration: underline; }
+
+.cat {
+  font: 700 10px var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1;
+  display: inline-block;
+  transform: translateY(-0.22em);
+  color: var(--ink-faint);
+}
+
+.cat-portfolio { color: var(--accent); }
+
+.empty { color: var(--ink-faint); font: italic 14px var(--serif); margin: 0.3rem 0; }
+
+/* --- post page ---------------------------------------------------------- */
+
+.post-title {
+  margin: 0.2rem 0 0.25rem;
+  font: 700 26px/1.15 var(--serif);
+  letter-spacing: -0.5px;
+}
+
+.post-meta {
+  margin: 0 0 1.1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule-strong);
+  font: 12.5px var(--sans);
+  letter-spacing: 0.4px;
+  color: var(--ink-faint);
+}
+
+.post-body { font: 15px/1.6 var(--serif); }
+
+.post-body h2 { font: 700 19px/1.2 var(--serif); margin: 1.4em 0 0.4em; }
+.post-body h3 { font: 700 16px/1.2 var(--serif); margin: 1.3em 0 0.3em; }
+.post-body p { margin: 0 0 0.8em; }
+.post-body ul, .post-body ol { margin: 0 0 0.8em; padding-left: 1.4em; }
+.post-body li { margin-bottom: 0.25em; }
+.post-body code {
+  font: 13px/1.4 "SF Mono", Menlo, Consolas, monospace;
+  background: #efece4;
+  padding: 0.1em 0.35em;
+}
+.post-body pre {
+  padding: 0.7em 0.9em;
+  overflow-x: auto;
+  background: #efece4;
+  border: 1px solid var(--rule);
+}
+.post-body pre code { background: none; padding: 0; }
+.post-body blockquote {
+  margin: 0.8em 0;
+  padding-left: 0.9em;
+  border-left: 3px solid var(--rule-strong);
+  color: var(--ink-soft);
+}
+.post-body img { max-width: 100%; }
+.post-body hr { border: none; border-top: 1px solid var(--rule); margin: 1.4em 0; }
+
+/* --- footer -------------------------------------------------------------- */
+
+.footer {
+  margin-top: 2.4rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--rule-strong);
+  font: 12px/1.4 var(--sans);
+  color: var(--ink-faint);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+}
+
+.footer a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.footer a:hover { color: var(--hover); }
+
+@media (max-width: 560px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .t-date { width: auto; }
+}

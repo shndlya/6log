@@ -1,0 +1,1 @@
+$if(pinned)$p$else$-$endif$|$date$|$category$|$title$|$slug$|$src$
