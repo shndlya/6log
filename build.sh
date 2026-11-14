@@ -121,14 +121,10 @@ home_section() { # category key, page path, title, lines — clickable title + f
   <section class="about-grid">
     <div class="about-col">
       <p class="about-note">Kunal Shandilya's blog. Contact options:</p>
-      <div class="contact-grid">
-        <a class="contact-instagram" href="https://instagram.com/shndlya" target="_blank" rel="noopener" aria-label="Instagram"
-          ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg
-        ></a>
-        <a class="contact-email" href="mailto:shndlya@proton.me" aria-label="Email shndlya@proton.me"
-          ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m4 7 8 6 8-6"/></svg
-        ></a>
-      </div>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-instagram" href="https://instagram.com/shndlya" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg></a>
+      <a class="contact-email" href="mailto:shndlya@proton.me" aria-label="Email shndlya@proton.me"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m4 7 8 6 8-6"/></svg></a>
     </div>
   </section>
 
@@ -162,7 +158,7 @@ EOF
   </section>
   <section>
 EOF
-  home_section misc misc "Misc." "$misc"
+  home_section notes notes "Notes" "$misc"
   cat <<'EOF'
   </section>
 
@@ -195,7 +191,7 @@ cat_page new new "New" "$new"
 cat_page computers computers "Computers" "$computers"
 cat_page learning learning "Learning" "$learning"
 cat_page culture culture "Culture" "$culture"
-cat_page misc misc "Misc." "$misc"
+cat_page notes notes "Notes" "$misc"
 
 # --- index page (mega-table of every post ever published) --------------------
 
