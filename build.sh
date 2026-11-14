@@ -56,9 +56,8 @@ pinned="$({ awk -F'|' '$1=="p"' "$META" || true; } | sort -t'|' -k2,2r)"
 new="$({ awk -F'|' '$1=="-"' "$META" || true; } | sort -t'|' -k2,2r)"
 computers="$({ awk -F'|' '$3=="computers"' "$META" || true; } | sort -t'|' -k2,2r)"
 learning="$({ awk -F'|' '$3=="learning"' "$META" || true; } | sort -t'|' -k2,2r)"
-entertainment="$({ awk -F'|' '$3=="entertainment"' "$META" || true; } | sort -t'|' -k2,2r)"
-notes="$({ awk -F'|' '$3=="notes"' "$META" || true; } | sort -t'|' -k2,2r)"
-photos="$({ awk -F'|' '$3=="photos"' "$META" || true; } | sort -t'|' -k2,2r)"
+culture="$({ awk -F'|' '$3=="culture"' "$META" || true; } | sort -t'|' -k2,2r)"
+misc="$({ awk -F'|' '$3=="misc"' "$META" || true; } | sort -t'|' -k2,2r)"
 all="$({ cat "$META" || true; } | sort -t'|' -k2,2r)"
 rm -f "$META"
 
@@ -153,10 +152,7 @@ EOF
   home_section computers computers "Computers" "$computers"
   echo '  </section>'
   echo '  <section>'
-  home_section entertainment entertainment "Entertainment" "$entertainment"
-  echo '  </section>'
-  echo '  <section>'
-  home_section photos photos "Photos" "$photos"
+  home_section culture culture "Culture" "$culture"
   cat <<'EOF'
   </section>
   <section>
@@ -166,7 +162,7 @@ EOF
   </section>
   <section>
 EOF
-  home_section notes notes "Notes" "$notes"
+  home_section misc misc "Misc." "$misc"
   cat <<'EOF'
   </section>
 
@@ -198,9 +194,8 @@ cat_page pinned pinned "Pinned" "$pinned"
 cat_page new new "New" "$new"
 cat_page computers computers "Computers" "$computers"
 cat_page learning learning "Learning" "$learning"
-cat_page entertainment entertainment "Entertainment" "$entertainment"
-cat_page notes notes "Notes" "$notes"
-cat_page photos photos "Photos" "$photos"
+cat_page culture culture "Culture" "$culture"
+cat_page misc misc "Misc." "$misc"
 
 # --- index page (mega-table of every post ever published) --------------------
 
@@ -222,9 +217,8 @@ cat_page photos photos "Photos" "$photos"
   printf '%s\n' "$new"
   printf '%s\n' "$computers"
   printf '%s\n' "$learning"
-  printf '%s\n' "$entertainment"
-  printf '%s\n' "$notes"
-  printf '%s\n' "$photos"
+  printf '%s\n' "$culture"
+  printf '%s\n' "$misc"
 } | while IFS='|' read -r p date cat title slug src; do
   [ -n "$src" ] || continue
   title_esc="$(printf '%s' "$title" | html_escape)"

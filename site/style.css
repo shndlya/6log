@@ -23,9 +23,8 @@
   --d-new: #4caf67;
   --d-computers: #3e5f9e;
   --d-learning: #b7410e;
-  --d-entertainment: #52c08e;
-  --d-notes: #d9a521;
-  --d-photos: #a66dd4;
+  --d-culture: #52c08e;
+  --d-misc: #d9a521;
 }
 
 * { box-sizing: border-box; }
@@ -122,9 +121,8 @@ main > .section-title:first-child { margin-top: 0; }
 .d-new { color: var(--d-new); }
 .d-computers { color: var(--d-computers); }
 .d-learning { color: var(--d-learning); }
-.d-entertainment { color: var(--d-entertainment); }
-.d-notes { color: var(--d-notes); }
-.d-photos { color: var(--d-photos); }
+.d-culture { color: var(--d-culture); }
+.d-misc { color: var(--d-misc); }
 
 @keyframes bullet-breathe {
   from { opacity: 1; }
