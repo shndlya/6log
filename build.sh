@@ -103,7 +103,7 @@ render_index() { # lines — the Index mega-table: date (center), category (cent
 
 home_section() { # category key, page path, title, lines — clickable title + full table
   local key="$1" path="$2" title="$3" lines="$4" url
-  url="/$path.html"
+  url="$path.html"
   printf '<h2 class="section-title"><span class="bullet d-%s" aria-hidden="true">■</span><a href="%s" '"$HX"' >%s</a></h2>\n' \
     "$key" "$url" "$url" "$title"
   printf '<table class="posts">\n    <tbody>\n'
